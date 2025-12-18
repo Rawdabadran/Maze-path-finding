@@ -21,7 +21,7 @@ class Directions(Enum):
     LEFT = 3
     RIGHT = 4
 
-# ================== كلاس توليد المتاهة ==================
+
 class Backtracking:
     def __init__(self, height, width, path, displayMaze):
         print("Using OpenCV version:", cv2.__version__)
@@ -39,7 +39,7 @@ class Backtracking:
     def createMaze(self):
         maze = np.ones((self.height, self.width), dtype=float)
 
-        # بناء الجدران
+        
         for i in range(self.height):
             for j in range(self.width):
                 if i % 2 == 1 or j % 2 == 1:
@@ -47,22 +47,22 @@ class Backtracking:
                 if i == 0 or j == 0 or i == self.height - 1 or j == self.width - 1:
                     maze[i, j] = 0.5
 
-        # نقطة بداية عشوائية
+       
         sx = random.choice(range(2, self.width - 2, 2))
         sy = random.choice(range(2, self.height - 2, 2))
 
         self.generator(sx, sy, maze)
 
-        # تحويل المزارات إلى ممرات
+    
         maze[maze == 0.5] = 1
 
-        # اجعل الحدود كلها جدران (مزارات)
+        
         maze[0, :] = 0
         maze[-1, :] = 0
         maze[:, 0] = 0
         maze[:, -1] = 0
 
-        # المدخل والمخرج
+        
         self.start = (1, 2)
         self.end = (self.height - 2, self.width - 3)
 
@@ -179,4 +179,5 @@ if __name__ == "__main__":
         print("-"*60)
         print(f"{'BFS':<10} | {len(path):<12} | {solver.nodes_explored:<15} | {elapsed_ms:.3f}")
     else:
+
         print("لم يتم العثور على مسار")
