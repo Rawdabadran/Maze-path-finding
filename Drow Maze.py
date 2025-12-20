@@ -3,7 +3,7 @@ from enum import Enum
 import numpy as np
 import cv2
 import sys
-
+random.seed(42)   
 sys.setrecursionlimit(8000)
 
 
@@ -102,3 +102,4 @@ class Backtracking:
 if __name__ == "__main__":
     mazeGen = Backtracking(50, 50, "maze.png", True)
     mazeGen.createMaze()
+
