@@ -103,7 +103,7 @@ class Backtracking:
                     grid[my, mx] = 0.5
                     self.generator(nx, ny, grid)
 
-# ================== كلاس حل المتاهة باستخدام BFS ==================
+
 class BFSSolver:
     def __init__(self, maze, start, goal):
         self.maze = maze
@@ -146,18 +146,17 @@ class BFSSolver:
             current = came_from[current]
         return path[::-1]
 
-# ================== تشغيل البرنامج ==================
+
 if __name__ == "__main__":
     mazeGen = Backtracking(50, 50, "maze.png", False)
     maze = mazeGen.createMaze()
 
     solver = BFSSolver(maze, mazeGen.start, mazeGen.end)
 
-    # حساب الزمن
     start_time = time.time()
     path = solver.solve()
     end_time = time.time()
-    elapsed_ms = (end_time - start_time) * 1000  # بالمللي ثانية
+    elapsed_ms = (end_time - start_time) * 1000  
 
     if path:
         solved = cv2.cvtColor((maze * 255).astype(np.uint8), cv2.COLOR_GRAY2BGR)
@@ -180,4 +179,5 @@ if __name__ == "__main__":
         print(f"{'BFS':<10} | {len(path):<12} | {solver.nodes_explored:<15} | {elapsed_ms:.3f}")
     else:
 
-        print("لم يتم العثور على مسار")
+        print("No Path")
+
